@@ -1,0 +1,73 @@
+@startuml
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #000000
+  FontSize 14
+}
+
+skinparam frame {
+  BackgroundColor #E8F4F8
+  BorderColor #2980B9
+  FontSize 14
+}
+
+skinparam folder {
+  BackgroundColor #FFF9E6
+  BorderColor #F39C12
+  FontSize 14
+}
+
+skinparam component {
+  BackgroundColor #E8F8F5
+  BorderColor #27AE60
+  FontSize 19
+}
+
+skinparam interface {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+
+component "<<AtomicRosNodeClassifier>>\
+PositionStartingSequence" as node {
+  portin "supervision_callback" as sub_1
+  portout " " as pub_1
+  portout " " as pub_2
+  portout " " as pub_3
+  portout " " as pub_4
+  portout " " as pub_5
+}
+
+frame "sub_1" as topic_supervision_status {
+  rectangle "**std_msgs/msg/String**" as t_sub_1
+}
+
+frame "pub_1" as topic_alice_move_urx {
+  rectangle "**std_msgs/msg/String**" as t_pub_1
+}
+
+frame "pub_2" as topic_alice_rg6_command {
+  rectangle "**std_msgs/msg/String**" as t_pub_2
+}
+
+frame "pub_3" as topic_alice_einklemmer_command {
+  rectangle "**std_msgs/msg/String**" as t_pub_3
+}
+
+frame "pub_4" as topic_bob_move_urx {
+  rectangle "**std_msgs/msg/String**" as t_pub_4
+}
+
+frame "pub_5" as topic_start_sequence_status {
+  rectangle "**std_msgs/msg/String**" as t_pub_5
+}
+
+topic_supervision_status -[#blue,bold]-> sub_1
+pub_1 -[#green,bold]-> topic_alice_move_urx
+pub_2 -[#green,bold]-> topic_alice_rg6_command
+pub_3 -[#green,bold]-> topic_alice_einklemmer_command
+pub_4 -[#green,bold]-> topic_bob_move_urx
+pub_5 -[#green,bold]-> topic_start_sequence_status
+
+@enduml

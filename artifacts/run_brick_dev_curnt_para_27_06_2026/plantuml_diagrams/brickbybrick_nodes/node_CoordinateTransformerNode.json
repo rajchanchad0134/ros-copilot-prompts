@@ -1,0 +1,20 @@
+{
+  "classifier_name": "CoordinateTransformerNode",
+  "ports": [
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "vision_msgs/msg/Detection3DArray",
+      "callback_function": "callback",
+      "original_topic_name": "/perception/detected_objects3d",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "brickbybrick_messages/msg/PickCommandArray",
+      "original_topic_name": "/perception/detected_transformed",
+      "param_derived": false
+    }
+  ]
+}

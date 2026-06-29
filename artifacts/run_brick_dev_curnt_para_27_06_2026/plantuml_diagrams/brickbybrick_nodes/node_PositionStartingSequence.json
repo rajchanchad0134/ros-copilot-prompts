@@ -1,0 +1,48 @@
+{
+  "classifier_name": "PositionStartingSequence",
+  "ports": [
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "supervision_callback",
+      "original_topic_name": "/supervision/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/alice/move_urx",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_2",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/alice/rg6_command",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_3",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/alice/einklemmer/command",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_4",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/bob/move_urx",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_5",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/start_sequence/status",
+      "param_derived": false
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+@startuml
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #000000
+  FontSize 14
+}
+
+skinparam frame {
+  BackgroundColor #E8F4F8
+  BorderColor #2980B9
+  FontSize 14
+}
+
+skinparam folder {
+  BackgroundColor #FFF9E6
+  BorderColor #F39C12
+  FontSize 14
+}
+
+skinparam component {
+  BackgroundColor #E8F8F5
+  BorderColor #27AE60
+  FontSize 19
+}
+
+skinparam interface {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+
+component "<<AtomicRosNodeClassifier>>\
+Supervisor" as node {
+  portin "get_start_sequence_status_callback" as sub_1
+  portin "get_end_sequence_status_callback" as sub_2
+  portin "get_disassembly_status_callback" as sub_3
+  portout " " as pub_1
+  portout " " as pub_2
+  portin "start_seq_callback" as sub_4
+  portin "perception_status_callback" as sub_5
+  portin "conveyor_status_callback" as sub_6
+}
+
+frame "sub_1" as topic_start_sequence_status {
+  rectangle "**std_msgs/msg/String**" as t_sub_1
+}
+
+frame "sub_2" as topic_end_sequence_status {
+  rectangle "**std_msgs/msg/String**" as t_sub_2
+}
+
+frame "sub_3" as topic_disassembly_status {
+  rectangle "**std_msgs/msg/String**" as t_sub_3
+}
+
+frame "pub_1" as topic_start_signal_instance {
+  rectangle "**std_msgs/msg/String**" as t_pub_1
+}
+
+frame "pub_2" as topic_supervision_status {
+  rectangle "**std_msgs/msg/String**" as t_pub_2
+}
+
+frame "sub_4" as topic_start_sequence_status_2 {
+  rectangle "**std_msgs/msg/String**" as t_sub_4
+}
+
+frame "sub_5" as topic_perception_status {
+  rectangle "**std_msgs/msg/String**" as t_sub_5
+}
+
+frame "sub_6" as topic_alice_conveyor_status {
+  rectangle "**std_msgs/msg/String**" as t_sub_6
+}
+
+topic_start_sequence_status -[#blue,bold]-> sub_1
+topic_end_sequence_status -[#blue,bold]-> sub_2
+topic_disassembly_status -[#blue,bold]-> sub_3
+pub_1 -[#green,bold]-> topic_start_signal_instance
+pub_2 -[#green,bold]-> topic_supervision_status
+topic_start_sequence_status_2 -[#blue,bold]-> sub_4
+topic_perception_status -[#blue,bold]-> sub_5
+topic_alice_conveyor_status -[#blue,bold]-> sub_6
+
+@enduml

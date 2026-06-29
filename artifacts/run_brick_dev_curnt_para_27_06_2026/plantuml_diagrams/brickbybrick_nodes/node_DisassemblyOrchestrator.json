@@ -1,0 +1,42 @@
+{
+  "classifier_name": "DisassemblyOrchestrator",
+  "ports": [
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/bob/move_urx",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_2",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/bob/rg6_command",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_3",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "disassembly/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "brickbybrick_messages/msg/PickCommand",
+      "callback_function": "next_brick_callback",
+      "original_topic_name": "/next_pick",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_2",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "supervision_callback",
+      "original_topic_name": "supervision/status",
+      "param_derived": false
+    }
+  ]
+}

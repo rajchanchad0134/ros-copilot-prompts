@@ -1,0 +1,49 @@
+@startuml
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #000000
+  FontSize 14
+}
+
+skinparam frame {
+  BackgroundColor #E8F4F8
+  BorderColor #2980B9
+  FontSize 14
+}
+
+skinparam folder {
+  BackgroundColor #FFF9E6
+  BorderColor #F39C12
+  FontSize 14
+}
+
+skinparam component {
+  BackgroundColor #E8F8F5
+  BorderColor #27AE60
+  FontSize 19
+}
+
+skinparam interface {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+
+component "<<AtomicRosNodeClassifier>>\
+LegoDetectorNode" as node {
+  portin "image_callback" as sub_1
+  portout " " as pub_1
+}
+
+frame "sub_1" as topic_camera_color_image_raw {
+  rectangle "**sensor_msgs/msg/Image**" as t_sub_1
+}
+
+frame "pub_1" as topic_perception_detected_objects2d {
+  rectangle "**vision_msgs/msg/Detection2DArray**" as t_pub_1
+}
+
+topic_camera_color_image_raw -[#blue,bold]-> sub_1
+pub_1 -[#green,bold]-> topic_perception_detected_objects2d
+
+@enduml

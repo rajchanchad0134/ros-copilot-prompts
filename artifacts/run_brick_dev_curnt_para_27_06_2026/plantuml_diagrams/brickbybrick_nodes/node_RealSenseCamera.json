@@ -1,0 +1,42 @@
+{
+  "classifier_name": "RealSenseCamera",
+  "ports": [
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "sensor_msgs/msg/Image",
+      "original_topic_name": "/camera/color/image_raw",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_2",
+      "message_type": "sensor_msgs/msg/Image",
+      "original_topic_name": "/camera/aligned_depth_to_color/image_raw",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_3",
+      "message_type": "sensor_msgs/msg/CameraInfo",
+      "original_topic_name": "/camera/color/camera_info",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "trigger_callback",
+      "original_topic_name": "/disassembly/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_2",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "supervision_trigger_callback",
+      "original_topic_name": "/supervision/status",
+      "param_derived": false
+    }
+  ]
+}

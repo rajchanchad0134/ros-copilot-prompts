@@ -1,0 +1,185 @@
+@startuml
+!theme plain
+left to right direction
+skinparam packageStyle rectangle
+
+component "Brick System" as brick_system <<ComposedRosNodeClassifier>> {
+
+    component "camera_base_tf:static_transform_publisher" as camera_base_tf <<RosNodePart>> {
+    }
+
+    component "static_tf_world_to_bob:static_transform_publisher" as static_tf_world_to_bob <<RosNodePart>> {
+    }
+
+    component "static_tf_world_to_alice:static_transform_publisher" as static_tf_world_to_alice <<RosNodePart>> {
+    }
+
+    component "alice_conveyer_belt:AliceConveyer" as alice_conveyer_belt <<RosNodePart>> {
+        portout "p1" as port1
+        portout "p2" as port2
+        portin "s1" as port3
+        portin "s2" as port4
+        portin "s3" as port5
+        portout "p3" as port6
+    }
+
+    component "position_starting_sequence:PositionStartingSequence" as position_starting_sequence <<RosNodePart>> {
+        portin "s1" as port7
+        portout "p1" as port8
+        portout "p2" as port9
+        portout "p3" as port10
+        portout "p4" as port11
+        portout "p5" as port12
+    }
+
+    component "position_ending_sequence:PositionEndingSequence" as position_ending_sequence <<RosNodePart>> {
+        portin "s1" as port13
+        portout "p1" as port14
+        portout "p2" as port15
+        portout "p3" as port16
+        portout "p4" as port17
+        portout "p5" as port18
+    }
+
+    component "disassembly_orchestrator:DisassemblyOrchestrator" as disassembly_orchestrator <<RosNodePart>> {
+        portout "p1" as port19
+        portout "p2" as port20
+        portout "p3" as port21
+        portin "s1" as port22
+        portin "s2" as port23
+    }
+
+    component "supervisor:Supervisor" as supervisor <<RosNodePart>> {
+        portin "s1" as port24
+        portin "s2" as port25
+        portin "s3" as port26
+        portout "p1" as port27
+        portout "p2" as port28
+        portin "s4" as port29
+        portin "s5" as port30
+        portin "s6" as port31
+    }
+
+    component "realsense_camera_node:RealSenseCamera" as realsense_camera_node <<RosNodePart>> {
+        portout "p1" as port32
+        portout "p2" as port33
+        portout "p3" as port34
+        portin "s1" as port35
+        portin "s2" as port36
+    }
+
+    component "lego_detector_node:LegoDetectorNode" as lego_detector_node <<RosNodePart>> {
+        portin "s1" as port37
+        portout "p1" as port38
+    }
+
+    component "object_localizer_node:ObjectLocalizerNode" as object_localizer_node <<RosNodePart>> {
+        portout "p1" as port39
+        portout "p2" as port40
+        portin "s1" as port41
+        portin "s2" as port42
+        portin "s3" as port43
+    }
+
+    component "coordinate_transformer_node:CoordinateTransformerNode" as coordinate_transformer_node <<RosNodePart>> {
+        portin "s1" as port44
+        portout "p1" as port45
+    }
+
+    component "pick_planner_node:PickPlannerNode" as pick_planner_node <<RosNodePart>> {
+        portin "s1" as port46
+        portout "p1" as port47
+    }
+
+    queue "/alice_conveyor/command" as alice_conveyor_command
+    queue "/alice/conveyor/status" as alice_conveyor_status
+    queue "/alice/io_states" as alice_io_states
+    queue "/start_signal_instance" as start_signal_instance
+    queue "/supervision/status" as supervision_status
+    queue "/perception/detected_objects2d" as perception_detected_objects2d
+    queue "/camera/color/image_raw" as camera_color_image_raw
+    queue "/alice/move_urx" as alice_move_urx
+    queue "/alice/rg6_command" as alice_rg6_command
+    queue "/alice/einklemmer/command" as alice_einklemmer_command
+    queue "/bob/move_urx" as bob_move_urx
+    queue "/start_sequence/status" as start_sequence_status
+    queue "/perception/detected_objects3d" as perception_detected_objects3d
+    queue "/perception/status" as perception_status
+    queue "/camera/aligned_depth_to_color/image_raw" as camera_aligned_depth_to_color_image_raw
+    queue "/camera/color/camera_info" as camera_color_camera_info
+    queue "/disassembly/status" as disassembly_status
+    queue "/perception/detected_transformed" as perception_detected_transformed
+    queue "/end_sequence/status" as end_sequence_status
+    queue "/next_pick" as next_pick
+
+    circle "/start_sequence/begin" as service_start_sequence_begin <<Service>>
+
+    ' CONNECTIONS: alice_conveyer_belt Publishers
+    port1 --[#Green,bold]-> alice_conveyor_command
+    port2 --[#Green,bold]-> alice_conveyor_status
+    alice_io_states --[#Blue,bold]-> port3
+    start_signal_instance --[#Blue,bold]-> port4
+    supervision_status --[#Blue,bold]-> port5
+
+    ' CONNECTIONS: alice_conveyer_belt Service Ports
+    port6 --[#Red,bold]-> service_start_sequence_begin
+
+    ' CONNECTIONS: position_starting_sequence Publishers
+    port8 --[#Green,bold]-> alice_move_urx
+    port9 --[#Green,bold]-> alice_rg6_command
+    port10 --[#Green,bold]-> alice_einklemmer_command
+    port11 --[#Green,bold]-> bob_move_urx
+    port12 --[#Green,bold]-> start_sequence_status
+
+    ' CONNECTIONS: position_ending_sequence Publishers
+    port14 --[#Green,bold]-> alice_move_urx
+    port15 --[#Green,bold]-> alice_rg6_command
+    port16 --[#Green,bold]-> alice_einklemmer_command
+    port17 --[#Green,bold]-> bob_move_urx
+    port18 --[#Green,bold]-> end_sequence_status
+
+    ' CONNECTIONS: disassembly_orchestrator Publishers
+    port19 --[#Green,bold]-> bob_move_urx
+    port20 --[#Green,bold]-> alice_rg6_command
+    port21 --[#Green,bold]-> disassembly_status
+    perception_detected_transformed --[#Blue,bold]-> port22
+    supervision_status --[#Blue,bold]-> port23
+
+    ' CONNECTIONS: supervisor Publishers
+    port27 --[#Green,bold]-> start_signal_instance
+    port28 --[#Green,bold]-> supervision_status
+    start_sequence_status --[#Blue,bold]-> port24
+    end_sequence_status --[#Blue,bold]-> port25
+    disassembly_status --[#Blue,bold]-> port26
+    start_sequence_status --[#Blue,bold]-> port29
+    perception_status --[#Blue,bold]-> port30
+    alice_conveyor_status --[#Blue,bold]-> port31
+
+    ' CONNECTIONS: realsense_camera_node Publishers
+    port32 --[#Green,bold]-> camera_color_image_raw
+    port33 --[#Green,bold]-> camera_aligned_depth_to_color_image_raw
+    port34 --[#Green,bold]-> camera_color_camera_info
+    disassembly_status --[#Blue,bold]-> port35
+    supervision_status --[#Blue,bold]-> port36
+
+    ' CONNECTIONS: lego_detector_node Publishers
+    camera_color_image_raw --[#Blue,bold]-> port37
+    port38 --[#Green,bold]-> perception_detected_objects2d
+
+    ' CONNECTIONS: object_localizer_node Publishers
+    port39 --[#Green,bold]-> perception_detected_objects3d
+    port40 --[#Green,bold]-> perception_status
+    camera_aligned_depth_to_color_image_raw --[#Blue,bold]-> port41
+    camera_color_camera_info --[#Blue,bold]-> port42
+    perception_detected_objects2d --[#Blue,bold]-> port43
+
+    ' CONNECTIONS: coordinate_transformer_node Publishers
+    perception_detected_objects3d --[#Blue,bold]-> port44
+    port45 --[#Green,bold]-> perception_detected_transformed
+
+    ' CONNECTIONS: pick_planner_node Publishers
+    perception_detected_transformed --[#Blue,bold]-> port46
+    port47 --[#Green,bold]-> next_pick
+}
+
+@enduml

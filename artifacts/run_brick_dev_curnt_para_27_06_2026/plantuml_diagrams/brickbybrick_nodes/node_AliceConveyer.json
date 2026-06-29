@@ -1,0 +1,50 @@
+{
+  "classifier_name": "AliceConveyer",
+  "ports": [
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/alice_conveyor/command",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_2",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/alice/conveyor/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "start_conveyer_callback",
+      "original_topic_name": "/alice/io_states",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_2",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "get_supervisor_start_callback",
+      "original_topic_name": "/start_signal_instance",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_3",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "supervision_status",
+      "original_topic_name": "/supervision/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Client",
+      "identifier": "client_1",
+      "service_type": "brickbybrick_interfaces/srv/BrickSequence",
+      "original_service_name": "/start_sequence/begin",
+      "param_derived": false
+    }
+  ]
+}

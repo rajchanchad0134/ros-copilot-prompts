@@ -1,0 +1,24 @@
+{
+  "classifier_name": "LegoDetectorNode",
+  "ports": [
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "sensor_msgs/msg/Image",
+      "callback_function": "image_callback",
+      "original_topic_name": "/camera/color/image_raw",
+      "param_derived": true,
+      "param_name": "image_topic",
+      "param_default": "/camera/color/image_raw"
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "vision_msgs/msg/Detection2DArray",
+      "original_topic_name": "/perception/detected_objects2d",
+      "param_derived": true,
+      "param_name": "detections_topic",
+      "param_default": "/perception/detected_objects2d"
+    }
+  ]
+}

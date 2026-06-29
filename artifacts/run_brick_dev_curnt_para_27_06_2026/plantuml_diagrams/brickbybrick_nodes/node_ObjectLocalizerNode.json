@@ -1,0 +1,51 @@
+{
+  "classifier_name": "ObjectLocalizerNode",
+  "ports": [
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "vision_msgs/msg/Detection3DArray",
+      "original_topic_name": "/perception/detected_objects3d",
+      "param_derived": true,
+      "param_name": "detections3d_topic",
+      "param_default": "/perception/detected_objects3d"
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_2",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/perception/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "sensor_msgs/msg/Image",
+      "callback_function": "depth_callback",
+      "original_topic_name": "/camera/aligned_depth_to_color/image_raw",
+      "param_derived": true,
+      "param_name": "depth_topic",
+      "param_default": "/camera/aligned_depth_to_color/image_raw"
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_2",
+      "message_type": "sensor_msgs/msg/CameraInfo",
+      "callback_function": "info_callback",
+      "original_topic_name": "/camera/color/camera_info",
+      "param_derived": true,
+      "param_name": "info_topic",
+      "param_default": "/camera/color/camera_info"
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_3",
+      "message_type": "vision_msgs/msg/Detection2DArray",
+      "callback_function": "det2d_callback",
+      "original_topic_name": "/perception/detected_objects2d",
+      "param_derived": true,
+      "param_name": "detections2d_topic",
+      "param_default": "/perception/detected_objects2d"
+    }
+  ]
+}

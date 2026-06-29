@@ -1,0 +1,72 @@
+@startuml
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #000000
+  FontSize 14
+}
+
+skinparam frame {
+  BackgroundColor #E8F4F8
+  BorderColor #2980B9
+  FontSize 14
+}
+
+skinparam folder {
+  BackgroundColor #FFF9E6
+  BorderColor #F39C12
+  FontSize 14
+}
+
+skinparam component {
+  BackgroundColor #E8F8F5
+  BorderColor #27AE60
+  FontSize 19
+}
+
+skinparam interface {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+
+component "<<AtomicRosNodeClassifier>>\
+AliceConveyer" as node {
+  portout " " as pub_1
+  portout " " as pub_2
+  portin "start_conveyer_callback" as sub_1
+  portin "get_supervisor_start_callback" as sub_2
+  portin "supervision_status" as sub_3
+}
+
+frame "pub_1" as topic_alice_conveyor_command {
+  rectangle "**std_msgs/msg/String**" as t_pub_1
+}
+
+frame "pub_2" as topic_alice_conveyor_status {
+  rectangle "**std_msgs/msg/String**" as t_pub_2
+}
+
+frame "sub_1" as topic_alice_io_states {
+  rectangle "**std_msgs/msg/String**" as t_sub_1
+}
+
+frame "sub_2" as topic_start_signal_instance {
+  rectangle "**std_msgs/msg/String**" as t_sub_2
+}
+
+frame "sub_3" as topic_supervision_status {
+  rectangle "**std_msgs/msg/String**" as t_sub_3
+}
+
+folder "client_1" as srv_client_1 {
+  rectangle "**brickbybrick_interfaces/srv/BrickSequence**" as s_client_1
+}
+
+pub_1 -[#green,bold]-> topic_alice_conveyor_command
+pub_2 -[#green,bold]-> topic_alice_conveyor_status
+topic_alice_io_states -[#blue,bold]-> sub_1
+topic_start_signal_instance -[#blue,bold]-> sub_2
+topic_supervision_status -[#blue,bold]-> sub_3
+node --( srv_client_1
+
+@enduml

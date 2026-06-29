@@ -1,0 +1,119 @@
+{
+  "launch_file_instances": [
+    {
+      "id": "lf1",
+      "launch_file_path": "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/launch/brick.launch.py",
+      "type": "brick.launch.py",
+      "nodes": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6",
+        "n7",
+        "n8",
+        "n9",
+        "n10",
+        "n11",
+        "n12",
+        "n13"
+      ],
+      "included_launch_files": [],
+      "namespace": {}
+    }
+  ],
+  "node_instances": [
+    {
+      "id": "n1",
+      "node_kind": "executable",
+      "type": "static_transform_publisher",
+      "node_name": "camera_base_tf",
+      "namespace": ""
+    },
+    {
+      "id": "n2",
+      "node_kind": "executable",
+      "type": "static_transform_publisher",
+      "node_name": "static_tf_world_to_bob",
+      "namespace": ""
+    },
+    {
+      "id": "n3",
+      "node_kind": "executable",
+      "type": "static_transform_publisher",
+      "node_name": "static_tf_world_to_alice",
+      "namespace": ""
+    },
+    {
+      "id": "n4",
+      "node_kind": "executable",
+      "type": "alice_conveyer_belt",
+      "node_name": "alice_conveyer_belt",
+      "namespace": ""
+    },
+    {
+      "id": "n5",
+      "node_kind": "executable",
+      "type": "position_starting_sequence",
+      "node_name": "position_starting_sequence",
+      "namespace": ""
+    },
+    {
+      "id": "n6",
+      "node_kind": "executable",
+      "type": "position_ending_sequence",
+      "node_name": "position_ending_sequence",
+      "namespace": ""
+    },
+    {
+      "id": "n7",
+      "node_kind": "executable",
+      "type": "disassembly_orchestrator",
+      "node_name": "disassembly_orchestrator",
+      "namespace": ""
+    },
+    {
+      "id": "n8",
+      "node_kind": "executable",
+      "type": "supervisor",
+      "node_name": "supervisor",
+      "namespace": ""
+    },
+    {
+      "id": "n9",
+      "node_kind": "executable",
+      "type": "realsense_camera_node",
+      "node_name": "realsense_camera_node",
+      "namespace": ""
+    },
+    {
+      "id": "n10",
+      "node_kind": "executable",
+      "type": "lego_detector_node",
+      "node_name": "lego_detector_node",
+      "namespace": ""
+    },
+    {
+      "id": "n11",
+      "node_kind": "executable",
+      "type": "object_localizer_node",
+      "node_name": "object_localizer_node",
+      "namespace": ""
+    },
+    {
+      "id": "n12",
+      "node_kind": "executable",
+      "type": "coordinate_transformer_node",
+      "node_name": "coordinate_transformer_node",
+      "namespace": ""
+    },
+    {
+      "id": "n13",
+      "node_kind": "executable",
+      "type": "pick_planner_node",
+      "node_name": "pick_planner_node",
+      "namespace": ""
+    }
+  ]
+}

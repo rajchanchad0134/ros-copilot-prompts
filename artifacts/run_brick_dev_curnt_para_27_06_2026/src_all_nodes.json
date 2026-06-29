@@ -1,0 +1,133 @@
+{
+  "packages": [
+    {
+      "package_name": "brickbybrick_nodes",
+      "atomic_ros_node_classifiers": [
+        {
+          "id": "arc_1",
+          "class_name": "AliceConveyer",
+          "node_name": "alice_conveyer",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/alice_conveyer_belt.py"
+          ],
+          "description": "Controls the Alice conveyor belt by publishing movement commands and status, subscribes to IO states from light sensors and supervision signals.",
+          "compile_type": "python",
+          "execution": "AliceConveyer"
+        },
+        {
+          "id": "arc_2",
+          "class_name": "LegoDetectorNode",
+          "node_name": "lego_detector_node",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/lego_detector_node.py"
+          ],
+          "description": "Receives camera images, performs YOLO-based LEGO brick detection, and publishes 2D detection results as Detection2DArray messages.",
+          "compile_type": "python",
+          "execution": "LegoDetectorNode"
+        },
+        {
+          "id": "arc_3",
+          "class_name": "PositionStartingSequence",
+          "node_name": "starting_sequence",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/position_starting_sequence.py"
+          ],
+          "description": "Executes the starting sequence by moving Alice and Bob robots through predefined joint positions to prepare for brick disassembly.",
+          "compile_type": "python",
+          "execution": "PositionStartingSequence"
+        },
+        {
+          "id": "arc_4",
+          "class_name": "ObjectLocalizerNode",
+          "node_name": "object_localizer_node",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/object_localizer_node.py"
+          ],
+          "description": "Fuses 2D detection results with aligned depth images to compute 3D object positions and publishes Detection3DArray messages.",
+          "compile_type": "python",
+          "execution": "ObjectLocalizerNode"
+        },
+        {
+          "id": "arc_5",
+          "class_name": "RealSenseCamera",
+          "node_name": "realsense_camera_node",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/realsense_camera_node.py"
+          ],
+          "description": "Captures images from RealSense D435i camera, applies ROI cropping, and publishes aligned color/depth images with corrected CameraInfo.",
+          "compile_type": "python",
+          "execution": "RealSenseCamera"
+        },
+        {
+          "id": "arc_6",
+          "class_name": "PickPlannerNode",
+          "node_name": "pick_planner_node",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/pick_planner_node.py"
+          ],
+          "description": "Selects the highest-priority brick from an array of detected objects based on Z-height and distance, publishes single PickCommand for execution.",
+          "compile_type": "python",
+          "execution": "PickPlannerNode"
+        },
+        {
+          "id": "arc_7",
+          "class_name": "Supervisor",
+          "node_name": "supervisor",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/supervisor.py"
+          ],
+          "description": "Coordinates the overall workflow by monitoring sequence statuses and publishing supervision commands to trigger photo capture and sequence transitions.",
+          "compile_type": "python",
+          "execution": "Supervisor"
+        },
+        {
+          "id": "arc_8",
+          "class_name": "CoordinateTransformerNode",
+          "node_name": "coordinate_transformer_node",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/coordinate_transformer.py"
+          ],
+          "description": "Transforms detected object coordinates from camera frame to world frame using TF2, applies camera offsets, and publishes transformed PickCommandArray.",
+          "compile_type": "python",
+          "execution": "CoordinateTransformerNode"
+        },
+        {
+          "id": "arc_9",
+          "class_name": "DisassemblyOrchestrator",
+          "node_name": "disassembly_orchestrator",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/disassembly_orchestrator.py"
+          ],
+          "description": "Orchestrates brick disassembly by controlling Bob robot movements and gripper based on pick commands, sorts bricks by color to designated drop-off positions.",
+          "compile_type": "python",
+          "execution": "DisassemblyOrchestrator"
+        },
+        {
+          "id": "arc_10",
+          "class_name": "PositionEndingSequence",
+          "node_name": "ending_sequence",
+          "header_file_paths": [],
+          "source_file_paths": [
+            "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/brickbybrick_nodes/brickbybrick_nodes/position_ending_sequence.py"
+          ],
+          "description": "Executes the ending sequence by moving Alice robot to release clamped objects at trash hover position and return to start position.",
+          "compile_type": "python",
+          "execution": "PositionEndingSequence"
+        }
+      ]
+    },
+    {
+      "package_name": "utils",
+      "atomic_ros_node_classifiers": []
+    }
+  ]
+}

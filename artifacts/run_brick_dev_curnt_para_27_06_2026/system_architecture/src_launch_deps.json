@@ -1,0 +1,12 @@
+{
+  "entry_launch_file": "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/launch/brick.launch.py",
+  "all_reachable": [
+    "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/launch/brick.launch.py"
+  ],
+  "adjacency": {
+    "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/launch/brick.launch.py": []
+  },
+  "dependency_tree": {
+    "/home/dhruv-zsh/co-pilot-architecture/system_under_test/brickbybrick-main/src/launch/brick.launch.py": {}
+  }
+}

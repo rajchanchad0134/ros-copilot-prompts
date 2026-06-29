@@ -1,0 +1,67 @@
+{
+  "classifier_name": "Supervisor",
+  "ports": [
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_1",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "get_start_sequence_status_callback",
+      "original_topic_name": "/start_sequence/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_2",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "get_end_sequence_status_callback",
+      "original_topic_name": "/end_sequence/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_3",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "get_disassembly_status_callback",
+      "original_topic_name": "disassembly/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_1",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/start_signal_instance",
+      "param_derived": false
+    },
+    {
+      "port_type": "Publisher",
+      "identifier": "pub_2",
+      "message_type": "std_msgs/msg/String",
+      "original_topic_name": "/supervision/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_4",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "start_seq_callback",
+      "original_topic_name": "/start_sequence/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_5",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "perception_status_callback",
+      "original_topic_name": "/perception/status",
+      "param_derived": false
+    },
+    {
+      "port_type": "Subscriber",
+      "identifier": "sub_6",
+      "message_type": "std_msgs/msg/String",
+      "callback_function": "conveyor_status_callback",
+      "original_topic_name": "/alice/conveyor/status",
+      "param_derived": false
+    }
+  ]
+}

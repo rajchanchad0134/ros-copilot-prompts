@@ -1,0 +1,526 @@
+{
+  "launch_file_name": "brick.launch.py",
+  "RosNodeParts": [
+    {
+      "id": "rnp_1",
+      "node_name": "camera_base_tf",
+      "class_name": "static_transform_publisher",
+      "full_namespace": "/",
+      "ports": []
+    },
+    {
+      "id": "rnp_2",
+      "node_name": "static_tf_world_to_bob",
+      "class_name": "static_transform_publisher",
+      "full_namespace": "/",
+      "ports": []
+    },
+    {
+      "id": "rnp_3",
+      "node_name": "static_tf_world_to_alice",
+      "class_name": "static_transform_publisher",
+      "full_namespace": "/",
+      "ports": []
+    },
+    {
+      "id": "rnp_4",
+      "node_name": "alice_conveyer_belt",
+      "class_name": "AliceConveyer",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice_conveyor/command",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/conveyor/status",
+          "port_type": "Publisher",
+          "identifier": "pub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/io_states",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/start_signal_instance",
+          "port_type": "Subscriber",
+          "identifier": "sub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/supervision/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_3"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "brickbybrick_interfaces/srv/BrickSequence",
+          "connected_topic_or_service_name": "/start_sequence/begin",
+          "port_type": "Client",
+          "identifier": "client_1"
+        }
+      ]
+    },
+    {
+      "id": "rnp_5",
+      "node_name": "position_starting_sequence",
+      "class_name": "PositionStartingSequence",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/supervision/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/move_urx",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/rg6_command",
+          "port_type": "Publisher",
+          "identifier": "pub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/einklemmer/command",
+          "port_type": "Publisher",
+          "identifier": "pub_3"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/bob/move_urx",
+          "port_type": "Publisher",
+          "identifier": "pub_4"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/start_sequence/status",
+          "port_type": "Publisher",
+          "identifier": "pub_5"
+        }
+      ]
+    },
+    {
+      "id": "rnp_6",
+      "node_name": "position_ending_sequence",
+      "class_name": "PositionEndingSequence",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/supervision/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/move_urx",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/rg6_command",
+          "port_type": "Publisher",
+          "identifier": "pub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/einklemmer/command",
+          "port_type": "Publisher",
+          "identifier": "pub_3"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/bob/move_urx",
+          "port_type": "Publisher",
+          "identifier": "pub_4"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/end_sequence/status",
+          "port_type": "Publisher",
+          "identifier": "pub_5"
+        }
+      ]
+    },
+    {
+      "id": "rnp_7",
+      "node_name": "disassembly_orchestrator",
+      "class_name": "DisassemblyOrchestrator",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/bob/move_urx",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/bob/rg6_command",
+          "port_type": "Publisher",
+          "identifier": "pub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/disassembly/status",
+          "port_type": "Publisher",
+          "identifier": "pub_3"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "brickbybrick_messages/msg/PickCommand",
+          "connected_topic_or_service_name": "/next_pick",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/supervision/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_2"
+        }
+      ]
+    },
+    {
+      "id": "rnp_8",
+      "node_name": "supervisor",
+      "class_name": "Supervisor",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/start_sequence/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/end_sequence/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/disassembly/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_3"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/start_signal_instance",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/supervision/status",
+          "port_type": "Publisher",
+          "identifier": "pub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/start_sequence/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_4"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/perception/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_5"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/alice/conveyor/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_6"
+        }
+      ]
+    },
+    {
+      "id": "rnp_9",
+      "node_name": "realsense_camera_node",
+      "class_name": "RealSenseCamera",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "sensor_msgs/msg/Image",
+          "connected_topic_or_service_name": "/camera/color/image_raw",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "sensor_msgs/msg/Image",
+          "connected_topic_or_service_name": "/camera/aligned_depth_to_color/image_raw",
+          "port_type": "Publisher",
+          "identifier": "pub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "sensor_msgs/msg/CameraInfo",
+          "connected_topic_or_service_name": "/camera/color/camera_info",
+          "port_type": "Publisher",
+          "identifier": "pub_3"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/disassembly/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/supervision/status",
+          "port_type": "Subscriber",
+          "identifier": "sub_2"
+        }
+      ]
+    },
+    {
+      "id": "rnp_10",
+      "node_name": "lego_detector_node",
+      "class_name": "LegoDetectorNode",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "sensor_msgs/msg/Image",
+          "connected_topic_or_service_name": "/camera/color/image_raw",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "vision_msgs/msg/Detection2DArray",
+          "connected_topic_or_service_name": "/perception/detected_objects2d",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        }
+      ]
+    },
+    {
+      "id": "rnp_11",
+      "node_name": "object_localizer_node",
+      "class_name": "ObjectLocalizerNode",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "vision_msgs/msg/Detection3DArray",
+          "connected_topic_or_service_name": "/perception/detected_objects3d",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "std_msgs/msg/String",
+          "connected_topic_or_service_name": "/perception/status",
+          "port_type": "Publisher",
+          "identifier": "pub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "sensor_msgs/msg/Image",
+          "connected_topic_or_service_name": "/camera/aligned_depth_to_color/image_raw",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "sensor_msgs/msg/CameraInfo",
+          "connected_topic_or_service_name": "/camera/color/camera_info",
+          "port_type": "Subscriber",
+          "identifier": "sub_2"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "vision_msgs/msg/Detection2DArray",
+          "connected_topic_or_service_name": "/perception/detected_objects2d",
+          "port_type": "Subscriber",
+          "identifier": "sub_3"
+        }
+      ]
+    },
+    {
+      "id": "rnp_12",
+      "node_name": "coordinate_transformer_node",
+      "class_name": "CoordinateTransformerNode",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "vision_msgs/msg/Detection3DArray",
+          "connected_topic_or_service_name": "/perception/detected_objects3d",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "brickbybrick_messages/msg/PickCommandArray",
+          "connected_topic_or_service_name": "/perception/detected_transformed",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        }
+      ]
+    },
+    {
+      "id": "rnp_13",
+      "node_name": "pick_planner_node",
+      "class_name": "PickPlannerNode",
+      "full_namespace": "/",
+      "ports": [
+        {
+          "is_connected": true,
+          "message_or_service_type": "brickbybrick_messages/msg/PickCommandArray",
+          "connected_topic_or_service_name": "/perception/detected_transformed",
+          "port_type": "Subscriber",
+          "identifier": "sub_1"
+        },
+        {
+          "is_connected": true,
+          "message_or_service_type": "brickbybrick_messages/msg/PickCommand",
+          "connected_topic_or_service_name": "/next_pick",
+          "port_type": "Publisher",
+          "identifier": "pub_1"
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/alice_conveyor/command"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/alice/conveyor/status"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/alice/io_states"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/start_signal_instance"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/supervision/status"
+    },
+    {
+      "message_type": "vision_msgs/msg/Detection2DArray",
+      "topic_name": "/perception/detected_objects2d"
+    },
+    {
+      "message_type": "sensor_msgs/msg/Image",
+      "topic_name": "/camera/color/image_raw"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/alice/move_urx"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/alice/rg6_command"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/alice/einklemmer/command"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/bob/move_urx"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/start_sequence/status"
+    },
+    {
+      "message_type": "vision_msgs/msg/Detection3DArray",
+      "topic_name": "/perception/detected_objects3d"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/perception/status"
+    },
+    {
+      "message_type": "sensor_msgs/msg/Image",
+      "topic_name": "/camera/aligned_depth_to_color/image_raw"
+    },
+    {
+      "message_type": "sensor_msgs/msg/CameraInfo",
+      "topic_name": "/camera/color/camera_info"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/disassembly/status"
+    },
+    {
+      "message_type": "brickbybrick_messages/msg/PickCommandArray",
+      "topic_name": "/perception/detected_transformed"
+    },
+    {
+      "message_type": "std_msgs/msg/String",
+      "topic_name": "/end_sequence/status"
+    },
+    {
+      "message_type": "brickbybrick_messages/msg/PickCommand",
+      "topic_name": "/next_pick"
+    }
+  ],
+  "services": [
+    {
+      "service_type": "brickbybrick_interfaces/srv/BrickSequence",
+      "service_name": "/start_sequence/begin"
+    }
+  ],
+  "namespaces": [
+    "/"
+  ]
+}

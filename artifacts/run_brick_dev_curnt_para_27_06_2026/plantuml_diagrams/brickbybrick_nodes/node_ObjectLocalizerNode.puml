@@ -1,0 +1,67 @@
+@startuml
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #000000
+  FontSize 14
+}
+
+skinparam frame {
+  BackgroundColor #E8F4F8
+  BorderColor #2980B9
+  FontSize 14
+}
+
+skinparam folder {
+  BackgroundColor #FFF9E6
+  BorderColor #F39C12
+  FontSize 14
+}
+
+skinparam component {
+  BackgroundColor #E8F8F5
+  BorderColor #27AE60
+  FontSize 19
+}
+
+skinparam interface {
+  BackgroundColor transparent
+  BorderColor transparent
+}
+
+component "<<AtomicRosNodeClassifier>>\
+ObjectLocalizerNode" as node {
+  portin "depth_callback" as sub_1
+  portin "info_callback" as sub_2
+  portin "det2d_callback" as sub_3
+  portout " " as pub_1
+  portout " " as pub_2
+}
+
+frame "sub_1" as topic_camera_aligned_depth_to_color_image_raw {
+  rectangle "**sensor_msgs/msg/Image**" as t_sub_1
+}
+
+frame "sub_2" as topic_camera_color_camera_info {
+  rectangle "**sensor_msgs/msg/CameraInfo**" as t_sub_2
+}
+
+frame "sub_3" as topic_perception_detected_objects2d {
+  rectangle "**vision_msgs/msg/Detection2DArray**" as t_sub_3
+}
+
+frame "pub_1" as topic_perception_detected_objects3d {
+  rectangle "**vision_msgs/msg/Detection3DArray**" as t_pub_1
+}
+
+frame "pub_2" as topic_perception_status {
+  rectangle "**std_msgs/msg/String**" as t_pub_2
+}
+
+topic_camera_aligned_depth_to_color_image_raw -[#blue,bold]-> sub_1
+topic_camera_color_camera_info -[#blue,bold]-> sub_2
+topic_perception_detected_objects2d -[#blue,bold]-> sub_3
+pub_1 -[#green,bold]-> topic_perception_detected_objects3d
+pub_2 -[#green,bold]-> topic_perception_status
+
+@enduml
